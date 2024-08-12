@@ -1,11 +1,13 @@
 from tkinter import Tk, Entry, Button, StringVar
+import math
 
 class Calculator:
     def __init__(self, master):
         master.title("Calculator")
-        master.geometry('357x420+0+0')
+        master.geometry('357x4200+0+66')
         master.config(bg='gray')
         master.resizable(False, False)
+        master.iconbitmap("download.ico")
 
         self.equation = StringVar()
         self.entry_value = ''
@@ -14,6 +16,7 @@ class Calculator:
 
         # Button grid
         buttons = [
+            ('C', self.clear),
             ('(', lambda: self.show('(')),
             (')', lambda: self.show(')')),
             ('%', lambda: self.show('%')),
@@ -32,9 +35,16 @@ class Calculator:
             ('-', lambda: self.show('-')),
             ('/', lambda: self.show('/')),
             ('*', lambda: self.show('*')),
-            ('=', self.solve),
-            ('C', self.clear)
-        ]
+            ('X^2', lambda: self.show('**2')),
+            ('pow', lambda: self.show('**')),
+            ('√', lambda: self.show("math.sqrt")),
+            ('Sin()', lambda: self.show('math.sin(')),
+            ('Cos()', lambda: self.show('math.cos(')),
+            ('Tan()', lambda: self.show('math.tan(')),
+            ('log()', lambda: self.show('math.log(')),
+            ('π', lambda: self.show("math.pi")),            
+            ('=', self.solve)
+            ]
 
         x, y = 0, 50
         for button_text, command in buttons:
